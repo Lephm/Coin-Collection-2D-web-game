@@ -54,10 +54,17 @@ const initializeMeleeEnemy = (meleeEnemy) => {
       origin("center"),
       pos(meleeEnemy.pos.x, meleeEnemy.pos.y),
     ]);
-
     if (attackRange.isColliding(player)) {
+      if (player.pos) {
+        if (player.pos.x > meleeEnemy.pos.x) {
+          meleeEnemy.flipX(true);
+        } else {
+          meleeEnemy.flipX(false);
+        }
+      }
       meleeEnemy.useMeleeAttack(meleeEnemy.pos);
     }
+
     destroy(attackRange);
   });
 
